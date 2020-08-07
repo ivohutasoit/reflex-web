@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
- * @author ivoivohutasoit
+ * @author ivohutasoit
+ * @since 1.0.0
  */
 @Controller
 public class HomeController {
