@@ -12,60 +12,125 @@
           rel="stylesheet" media="screen" />
 </head>
 <body>
-    <!-- 
-     -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">[[#{app.name}]]</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li sec:authorize="isAuthenticated()" class="nav-item active">
-              <a class="nav-link" href="#">[[#{home}]] <span class="sr-only">(current)</span></a>
-            </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">[[#{app.name}]]</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li sec:authorize="isAuthenticated()" class="nav-item active">
+          <a class="nav-link" href="#">[[#{home}]] <span class="sr-only">(current)</span></a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> -->
+      </ul>
+        <ul class="navbar-nav ml-mr-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mr-md-4" href="#" id="locale" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span th:text="(${#locale.language} == 'in') ? #{i18n.indonesian} : #{i18n.english.us}"></span>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+                <a class="dropdown-item" th:href="@{?locale=en-US}">[[#{i18n.english.us}]]</a>
+                <a class="dropdown-item" th:href="@{?locale=in-ID}">[[#{i18n.indonesian}]]</a>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> -->
-          </ul>
-            <ul class="navbar-nav ml-mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle mr-md-4" href="#" id="locale" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span th:text="(${#locale.language} == 'in') ? #{i18n.indonesian} : #{i18n.english.us}"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-                        <a class="dropdown-item" th:href="@{?locale=en-US}">[[#{i18n.english.us}]]</a>
-                        <a class="dropdown-item" th:href="@{?locale=in-ID}">[[#{i18n.indonesian}]]</a>
+          </li>
+          <li sec:authorize="isAuthenticated()" class="nav-item text-nowrap">
+            <a class="nav-link" th:href="@{/signout}">[[#{sign.out}]]</a>
+          </li>
+          <li sec:authorize="!isAuthenticated()" class="nav-item text-nowrap mr-md-2">
+            <a class="nav-link" th:href="@{/signin}">[[#{sign.in}]]</a>
+          </li>
+          <li sec:authorize="!isAuthenticated()" class="nav-item text-nowrap">
+            <a class="btn btn-outline-primary" th:href="@{/register}">[[#{register.now}]]</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid mt-md-3">
+      <div sec:authorize="isAuthenticated()" class="row">
+        <div class="col-md-6">
+          <div class="card pt-md-3">
+            <h5 class="card-title ml-md-2 mb-md-n3">[[#{advance.filter}]]</h5>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <label for="reference_no" class="col-sm-4 col-form-label">[[#{reference.no}]]</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control form-control-sm" id="reference_no" th:placeholder="#{reference.no}">
+                  </div>
+                </div>
+                <div class="row">
+                  <label for="Name" class="col-sm-4 col-form-label">[[#{name}]]</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control form-control-sm" id="first_name" th:placeholder="#{first.name}">
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control form-control-sm" id="last_name" th:placeholder="#{last.name}">
+                  </div>
+                </div>
+                <!-- <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          First radio
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">
+                          Second radio
+                        </label>
+                      </div>
+                      <div class="form-check disabled">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                        <label class="form-check-label" for="gridRadios3">
+                          Third disabled radio
+                        </label>
+                      </div>
                     </div>
-                </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item text-nowrap">
-                    <a class="nav-link" th:href="@{/signout}">[[#{sign.out}]]</a>
-                </li>
-                <li sec:authorize="!isAuthenticated()" class="nav-item text-nowrap mr-md-2">
-                    <a class="nav-link" th:href="@{/signin}">[[#{sign.in}]]</a>
-                </li>
-                <li sec:authorize="!isAuthenticated()" class="nav-item text-nowrap">
-                    <a class="btn btn-outline-primary" th:href="@{/register}">[[#{register.now}]]</a>
-                </li>
-            </ul>
+                  </div>
+                </fieldset>
+                <div class="form-group row">
+                  <div class="col-sm-2">Checkbox</div>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="gridCheck1">
+                      <label class="form-check-label" for="gridCheck1">
+                        Example checkbox
+                      </label>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="float-right mt-md-1">
+                  <button type="submit" class="btn btn-sm btn-dark">[[#{search}]]</button>
+                  <button type="submit" class="btn btn-sm btn-outline-primary ">[[#{download}]]</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </nav>
+      </div>
+    </div>
     
     <script src="http://cdn.jsdelivr.net/webjars/jquery/3.5.1/jquery.min.js"
             th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
