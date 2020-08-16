@@ -7,8 +7,7 @@
     <meta http-equiv="content-type" content="text/html">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title th:text="#{app.name}"></title>
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/4.5.0/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
+    <link th:src="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"
           rel="stylesheet" media="screen" />
 </head>
 <body>
@@ -132,9 +131,7 @@
       </div>
     </div>
     
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.5.1/jquery.min.js"
-            th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script src="http://cdn.jsdelivr.net/webjars/bootstrap/4.5.0/js/bootstrap.min.js"
-            th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"></script>
 </body>
 </html>
